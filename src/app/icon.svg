@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#BF953F;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FCF6BA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B38728;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="64" height="64" fill="#0a0a0a" rx="12"/>
+  
+  <!-- Coffee cup -->
+  <path d="M18 28h20v18c0 2.8-2.2 5-5 5h-10c-2.8 0-5-2.2-5-5V28z" fill="url(#gold)" opacity="0.9"/>
+  
+  <!-- Handle -->
+  <path d="M38 32h2.5c1.4 0 2.5 1.1 2.5 2.5v5c0 1.4-1.1 2.5-2.5 2.5H38" stroke="url(#gold)" stroke-width="2" fill="none"/>
+  
+  <!-- Steam wisps -->
+  <g opacity="0.6" fill="url(#gold)">
+    <path d="M23 22c0-2.5 1.2-5 1.2-5s1.2 2.5 1.2 5-1.2 2.5-1.2 2.5-1.2-2.5-1.2-2.5z"/>
+    <path d="M28 20c0-2.5 1.2-5 1.2-5s1.2 2.5 1.2 5-1.2 2.5-1.2 2.5-1.2-2.5-1.2-2.5z"/>
+    <path d="M33 22c0-2.5 1.2-5 1.2-5s1.2 2.5 1.2 5-1.2 2.5-1.2 2.5-1.2-2.5-1.2-2.5z"/>
+  </g>
+</svg>

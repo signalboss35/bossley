@@ -1,26 +1,231 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* British Luxury Color Palette */
+    --color-bg: 8 8 10;
+    --color-fg: 245 245 242;
+    
+    /* Refined Gold Palette */
+    --gold-primary: 191 149 63;
+    --gold-light: 212 175 106;
+    --gold-accent: 139 116 78;
+    
+    /* Neutral Tones */
+    --stone-dark: 23 23 23;
+    --stone-mid: 38 38 38;
+    --stone-light: 64 64 64;
+    
+    /* Selection */
+    --color-selection-bg: 139 116 78;
+    --color-selection-fg: 255 255 255;
+    
+    /* Spacing Scale */
+    --spacing-section: 8rem;
+    --spacing-content: 4rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply min-h-screen antialiased;
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-fg));
+    font-family: var(--font-sans);
+    letter-spacing: 0.01em;
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-selection-bg));
+    color: rgb(var(--color-selection-fg));
+  }
+
+  /* Refined Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  p {
+    line-height: 1.7;
+    letter-spacing: 0.01em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .glass-panel {
+    background: linear-gradient(
+      135deg,
+      rgba(var(--stone-dark), 0.6) 0%,
+      rgba(var(--stone-mid), 0.4) 100%
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-panel:hover {
+    border-color: rgba(var(--gold-primary), 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Refined Button Styles */
+  .btn-primary {
+    @apply px-8 py-4 bg-[rgb(var(--gold-accent))] text-white font-serif tracking-wide;
+    @apply transition-all duration-500 ease-out;
+    @apply hover:bg-[rgb(var(--gold-primary))] hover:shadow-[0_0_30px_rgba(191,149,63,0.3)];
+    @apply active:scale-95;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .btn-primary:hover::before {
+    transform: translateX(100%);
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 border border-white/20 backdrop-blur-sm;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:border-[rgb(var(--gold-primary))] hover:text-[rgb(var(--gold-primary))];
+    @apply active:scale-95;
+  }
+
+  /* Decorative Elements */
+  .corner-accent {
+    position: relative;
+  }
+
+  .corner-accent::before,
+  .corner-accent::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-color: rgba(var(--gold-primary), 0.4);
+  }
+
+  .corner-accent::before {
+    top: -8px;
+    left: -8px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+
+  .corner-accent::after {
+    bottom: -8px;
+    right: -8px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--gold-primary)) 0%,
+      rgb(var(--gold-light)) 50%,
+      rgb(var(--gold-primary)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Fade-in Animations */
+  .fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--stone-dark));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--gold-accent));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--gold-primary));
 }
