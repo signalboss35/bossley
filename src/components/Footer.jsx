@@ -93,7 +93,7 @@ const Footer = () => {
             </div>
             
             <p className="text-gray-400 text-sm font-light">
-              BossBangRak Project
+              Bossley Project
             </p>
           </div>
         </div>
